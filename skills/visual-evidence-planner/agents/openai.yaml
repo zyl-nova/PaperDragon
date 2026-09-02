@@ -1,0 +1,4 @@
+interface:
+  display_name: "Visual Evidence Planner"
+  short_description: "Select and plan formulas, figures, and tables as evidence"
+  default_prompt: "Plan the paper visuals that best support its claims."

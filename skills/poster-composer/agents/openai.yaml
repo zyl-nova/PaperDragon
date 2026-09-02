@@ -1,0 +1,4 @@
+interface:
+  display_name: "Poster Composer"
+  short_description: "Compose an adaptive academic poster structure"
+  default_prompt: "Compose a poster layout from the verified paper analysis."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Section Writing"
+  short_description: "Turn grounded evidence into concise paper section notes"
+  default_prompt: "Organize each paper section with evidence-grounded writing rules."

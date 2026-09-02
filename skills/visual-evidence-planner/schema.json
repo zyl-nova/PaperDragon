@@ -1,0 +1,1 @@
+{"type":"object","required":["paperType","availableSignals","selectionPolicy","slots"],"properties":{"paperType":{"type":"string"},"availableSignals":{"type":"object"},"selectionPolicy":{"type":"object"},"slots":{"type":"array"}}}

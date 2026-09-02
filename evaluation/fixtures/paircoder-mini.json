@@ -1,0 +1,40 @@
+{
+  "id": "paircoder-mini",
+  "title": "PairCoder Real-Paper Regression",
+  "paperText": "# Abstract\nPairCoder adapts pair programming to LLM-based code generation through a Navigator for high-level planning and a Driver for implementation. It achieves relative pass@1 improvements of 12.00%-162.43% compared with direct prompting.\n# Problem\nExisting code-generation approaches rely on a rigid single solution plan. When the initial plan is flawed, feedback-driven repair remains trapped in the wrong direction.\n# Method\nThe Navigator reflects on the problem, samples and clusters diverse plans, selects a current plan, and switches plans using execution feedback and historical memory. The Driver generates, tests, and repairs code. Algorithm 1 repeats until public tests pass or the iteration limit is reached. Figure 2 shows the complete Navigator-Driver workflow.\n# Experiments\nThe evaluation uses HumanEval, HumanEval+, MBPP, MBPP+, and CodeContest with GPT-3.5-Turbo and DeepSeek-Coder. Table 2 reports the primary pass@1 comparison.\n# Results\nPairCoder outperforms all baselines. Relative gains are 16.97%-162.43% with GPT-3.5-Turbo and 12.00%-128.76% with DeepSeek-Coder. Figure 9 shows that accuracy continues to improve with more iterations. Ablation results show that both multi-plan exploration and feedback-driven refinement contribute, with larger gains on CodeContest.\n# Limitations\nPairCoder requires more API calls than most approaches, although token consumption remains moderate. Results may also be affected by benchmark leakage and public-test coverage.\n# Contributions\nThe paper is the first to adapt pair programming to LLM code generation, introduces multi-plan exploration and feedback-driven refinement, and validates the framework on five benchmarks.\nFigure 2 presents PairCoder. Figure 9 presents iteration curves. Table 2 presents the primary comparison.",
+  "expected": {
+    "requiredFields": {
+      "problem": ["rigid single solution plan", "trapped in the wrong direction"],
+      "method": ["navigator", "driver", "historical memory"],
+      "experiments": ["humaneval", "mbpp", "codecontest"],
+      "results": ["12.00% 162.43%", "multi plan exploration", "feedback driven refinement"],
+      "contributions": ["pair programming", "five benchmarks"],
+      "logicReview": ["more api calls", "public test coverage"]
+    },
+    "formulas": [],
+    "figures": ["Figure 2", "Figure 9"],
+    "tables": ["Table 2"]
+  },
+  "candidate": {
+    "analysis": {
+      "problem": "With a rigid single solution plan, feedback-driven repair becomes trapped in the wrong direction when the initial plan is flawed.",
+      "method": "The Navigator explores and switches plans using execution feedback and historical memory, while the Driver generates, tests, and repairs code.",
+      "experiments": "The evaluation covers HumanEval, HumanEval+, MBPP, MBPP+, and CodeContest with two foundation models.",
+      "results": "PairCoder gains 12.00%-162.43% over direct prompting; ablations show that both multi-plan exploration and feedback-driven refinement contribute.",
+      "contributions": "The paper adapts pair programming to code generation and validates the resulting two-agent framework on five benchmarks.",
+      "logicReview": "The comparisons and ablations support the mechanism, but PairCoder uses more API calls and remains dependent on public-test coverage."
+    },
+    "formulas": [],
+    "figures": [{"name":"Figure 2"},{"name":"Figure 9"}],
+    "tables": [{"name":"Table 2"}],
+    "agent": {
+      "evidence": {
+        "method": [{"quote":"execution feedback and historical memory","location":"Method"}],
+        "results": [{"quote":"12.00%-162.43% compared with direct prompting","location":"Results"}],
+        "contributions": [{"quote":"first to adapt pair programming to LLM code generation","location":"Contributions"}]
+      },
+      "metrics": {"durationMs":1800,"modelCalls":9,"totalTokens":5200,"tokenEstimate":false}
+    }
+  },
+  "thresholds": {"overallScore":80,"evidenceConsistency":90,"hallucinationRate":5}
+}

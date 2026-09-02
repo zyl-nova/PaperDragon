@@ -1,0 +1,4 @@
+interface:
+  display_name: "Reading Plan Builder"
+  short_description: "Build an adaptive evidence-driven paper reading plan"
+  default_prompt: "Build a reading plan suited to this paper type."

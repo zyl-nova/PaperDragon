@@ -1,0 +1,1 @@
+{"type":"object","required":["paperType","density","sections","visualPlacements"],"properties":{"paperType":{"type":"string"},"density":{"enum":["compact","balanced","visual"]},"sections":{"type":"array"},"visualPlacements":{"type":"array"}}}

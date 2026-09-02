@@ -1,0 +1,1 @@
+{"type":"object","required":["paperType","tasks","sectionOrder"],"properties":{"paperType":{"type":"string"},"tasks":{"type":"array"},"sectionOrder":{"type":"array","items":{"type":"string"}}}}

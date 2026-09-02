@@ -1,0 +1,37 @@
+{
+  "id": "attention-mini",
+  "title": "Attention Architecture Mini Benchmark",
+  "paperText": "# Abstract\nWe propose a sequence transduction model based entirely on attention.\n# Problem\nRecurrent models prevent parallelization because sequence positions are processed sequentially.\n# Method\nThe model uses multi-head self-attention and position-wise feed-forward networks. Attention(Q,K,V)=softmax(QK^T/sqrt(d_k))V.\n# Experiments\nWe evaluate on WMT 2014 English-to-German translation against recurrent and convolutional baselines.\n# Results\nThe model reaches 28.4 BLEU and trains for 12 hours.\n# Conclusion\nThe contribution is a parallel architecture without recurrence.\nFigure 1 shows the model architecture. Table 1 reports translation results.",
+  "expected": {
+    "requiredFields": {
+      "problem": ["prevent parallelization", "processed sequentially"],
+      "method": ["multi head self attention", "feed forward networks"],
+      "experiments": ["wmt 2014", "recurrent", "convolutional"],
+      "results": ["28.4 bleu", "12 hours"],
+      "contributions": ["parallel architecture", "without recurrence"]
+    },
+    "formulas": ["Attention(Q,K,V)=softmax(QK^T/sqrt(d_k))V"],
+    "figures": ["Figure 1"],
+    "tables": ["Table 1"]
+  },
+  "candidate": {
+    "analysis": {
+      "problem": "Recurrent models prevent parallelization because positions are processed sequentially.",
+      "method": "The model combines multi-head self-attention with position-wise feed-forward networks.",
+      "experiments": "Evaluation uses WMT 2014 with recurrent and convolutional baselines.",
+      "results": "The model reports 28.4 BLEU after 12 hours of training.",
+      "contributions": "A parallel architecture without recurrence."
+    },
+    "formulas": ["Attention(Q,K,V)=softmax(QK^T/sqrt(d_k))V"],
+    "figures": [{"name":"Figure 1"}],
+    "tables": [{"name":"Table 1"}],
+    "agent": {
+      "evidence": {
+        "method": [{"quote":"multi-head self-attention","location":"Method"}],
+        "results": [{"quote":"28.4 BLEU and trains for 12 hours","location":"Results"}]
+      },
+      "metrics": {"durationMs":1200,"modelCalls":8,"totalTokens":4200,"tokenEstimate":false}
+    }
+  },
+  "thresholds": {"overallScore":80,"evidenceConsistency":90,"hallucinationRate":5}
+}

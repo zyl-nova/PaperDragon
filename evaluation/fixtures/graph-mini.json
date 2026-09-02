@@ -1,0 +1,37 @@
+{
+  "id": "graph-mini",
+  "title": "Graph Learning Chinese Mini Benchmark",
+  "paperText": "# 摘要\n本文研究图节点分类中的过平滑问题。\n# 方法\n模型采用残差图卷积和门控特征融合，目标函数为 L=L_cls+0.1L_reg。\n# 实验\n在 Cora 和 Citeseer 数据集上与 GCN 和 GAT 进行比较。\n# 结果\n模型在 Cora 上达到 84.2% 准确率。\n# 结论\n主要贡献是缓解深层图网络的过平滑。\n图1展示模型流程。表1展示节点分类结果。",
+  "expected": {
+    "requiredFields": {
+      "problem": ["过平滑"],
+      "method": ["残差图卷积", "门控特征融合"],
+      "experiments": ["cora", "citeseer", "gcn", "gat"],
+      "results": ["84.2%", "准确率"],
+      "contributions": ["缓解", "过平滑"]
+    },
+    "formulas": ["L=L_cls+0.1L_reg"],
+    "figures": ["图1"],
+    "tables": ["表1"]
+  },
+  "candidate": {
+    "analysis": {
+      "problem": "论文研究深层图网络的过平滑问题。",
+      "method": "方法使用残差图卷积与门控特征融合。",
+      "experiments": "在 Cora、Citeseer 上对比 GCN 和 GAT。",
+      "results": "Cora 准确率达到 84.2%。",
+      "contributions": "通过新结构缓解过平滑。"
+    },
+    "formulas": ["L=L_cls+0.1L_reg"],
+    "figures": [{"name":"图1"}],
+    "tables": [{"name":"表1"}],
+    "agent": {
+      "evidence": {
+        "method": [{"quote":"残差图卷积和门控特征融合","location":"方法"}],
+        "results": [{"quote":"84.2% 准确率","location":"结果"}]
+      },
+      "metrics": {"durationMs":900,"modelCalls":8,"totalTokens":3100,"tokenEstimate":true}
+    }
+  },
+  "thresholds": {"overallScore":80,"evidenceConsistency":90,"hallucinationRate":5}
+}

@@ -1,0 +1,1 @@
+{"type":"object","required":["paperType","sections"],"properties":{"paperType":{"type":"string"},"sections":{"type":"object"}}}

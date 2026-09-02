@@ -1,0 +1,20 @@
+{
+  "name": "paperdragon",
+  "productName": "PaperDragon",
+  "version": "0.1.0",
+  "private": true,
+  "main": "desktop/main.js",
+  "description": "An agentic paper-reading assistant that turns research papers into evidence-grounded academic posters.",
+  "scripts": {
+    "start": "node server.js",
+    "desktop": "electron .",
+    "test": "node --test agent/*.test.js tools/server/*.test.js tools/browser/*.test.js src/*.test.js src/memory/*.test.js src/observability/*.test.js evaluation/*.test.js",
+    "eval": "node evaluation/run-evaluation.js"
+  },
+  "dependencies": {
+    "html2canvas": "^1.4.1"
+  },
+  "devDependencies": {
+    "electron": "^43.4.1"
+  }
+}

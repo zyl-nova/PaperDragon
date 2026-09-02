@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PaperDragon</title>
+    <script>
+      if (new URLSearchParams(location.search).has("desktopPet")) {
+        document.documentElement.classList.add("desktop-pet-mode");
+      }
+    </script>
+    <link rel="stylesheet" href="./src/styles.css?v=20260831-semantic-visual-layout-v69" />
+    <script>
+      window.MathJax = {
+        tex: {
+          inlineMath: [["$", "$"], ["\\(", "\\)"]],
+          displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+          processEscapes: true
+        },
+        svg: { fontCache: "global" }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script defer src="./tools/browser/tool-runtime.js?v=20260806-adaptive-poster-v24"></script>
+    <script defer src="./tools/browser/pdf-parser.js?v=20260901-evidence-layout-v86"></script>
+    <script defer src="./src/api/arxiv-client.js?v=20260825-title-formula-recovery-v25"></script>
+    <script defer src="./tools/browser/text-formulas.js?v=20260806-adaptive-poster-v24"></script>
+    <script defer src="./tools/browser/text-figures.js?v=20260806-adaptive-poster-v24"></script>
+    <script defer src="./tools/browser/pdf-table-crop.js?v=20260824-edge-validated-v30"></script>
+    <script defer src="./tools/browser/paper-tools.js?v=20260806-adaptive-poster-v24"></script>
+    <script defer src="./src/memory/paper-memory.js?v=20260806-adaptive-poster-v24"></script>
+    <script defer src="./src/observability/agent-monitor.js?v=20260821-adaptive-repair-v26"></script>
+    <script defer src="./src/poster-asset-selector.js?v=20260901-evidence-layout-v46"></script>
+    <script defer src="./src/content-integrity.js?v=20260831-phase-consistency-v1"></script>
+    <script defer src="./src/inline-math.js?v=20260822-wrappable-formula-v9"></script>
+    <script defer src="./src/key-idea-visual.js?v=20260825-mechanism-flow-v7"></script>
+    <script defer src="./src/poster-narrative.js?v=20260824-evidence-first-v1"></script>
+    <script defer src="./src/poster-asset-placement.js?v=20260822-key-idea-map-v41"></script>
+    <script defer src="./src/poster-layout-planner.js?v=20260831-taller-natural-layout-v86"></script>
+    <script defer src="./src/poster-export-tools.js?v=20260901-paper-type-crop-v48"></script>
+    <script defer src="./src/source-identity.js?v=20260831-placeholder-doi-v4"></script>
+    <script defer src="./src/poster-evidence-viewer.js?v=20260901-semantic-evidence-v9"></script>
+    <script defer src="./tools/browser/poster-interactions.js?v=20260901-semantic-evidence-v3"></script>
+    <script defer src="./node_modules/html2canvas/dist/html2canvas.min.js?v=1.4.1"></script>
+    <script defer src="./src/poster-vision-review.js?v=20260821-inline-production-v39"></script>
+    <script defer src="./src/paper-pet.js?v=20260821-independent-pet-drag-v4"></script>
+    <script defer src="./src/desktop-shell.js?v=20260821-independent-pet-drag-v3"></script>
+    <script defer src="./src/view-zoom.js?v=20260821-workspace-zoom-v2"></script>
+    <script defer src="./src/app.js?v=20260901-evidence-layout-v115"></script>
+  </head>
+  <body>
+    <nav class="desktop-window-controls" id="desktopWindowControls" aria-label="桌面窗口控制">
+      <button type="button" data-desktop-action="pet" title="返回桌宠" aria-label="返回桌宠">⌂</button>
+      <button type="button" data-desktop-action="minimize" title="最小化" aria-label="最小化">−</button>
+      <button type="button" data-desktop-action="maximize" title="最大化或还原" aria-label="最大化或还原">□</button>
+      <button type="button" data-desktop-action="close" title="关闭" aria-label="关闭">×</button>
+    </nav>
+    <main class="app-shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">PaperDragon</p>
+            <h1>PaperDragon</h1>
+          </div>
+          <div class="actions">
+            <label class="file-button" for="pdfInput">Upload PDF</label>
+            <input id="pdfInput" type="file" accept="application/pdf,.pdf" />
+            <button class="secondary" id="loadSampleBtn" type="button">Load Sample</button>
+            <button class="secondary" id="clearBtn" type="button">Clear</button>
+            <button class="secondary" id="testApiBtn" type="button">Test API</button>
+            <button class="secondary" id="evaluateBtn" type="button">Run Evaluation</button>
+            <button class="secondary" id="visualReviewBtn" type="button">Review &amp; Improve</button>
+            <button class="secondary" id="exportBtn" type="button">Export Poster</button>
+            <button class="primary" id="analyzeBtn" type="button">Generate Poster</button>
+            <div class="view-zoom-controls" id="viewZoomControls" aria-label="工作区缩放">
+              <button type="button" data-view-zoom="out" title="缩小工作区" aria-label="缩小工作区">−</button>
+              <button class="view-zoom-level" id="viewZoomLevel" type="button" data-view-zoom="reset" title="恢复 100%" aria-label="恢复 100%">100%</button>
+              <button type="button" data-view-zoom="in" title="放大工作区" aria-label="放大工作区">+</button>
+            </div>
+          </div>
+        </header>
+
+        <section class="input-panel">
+          <div class="panel-head">
+            <h2>Paper Input</h2>
+            <span id="pdfStatus">Upload a PDF, or paste paper text, Markdown notes, formulas, and figure placeholders.</span>
+          </div>
+          <div class="source-row">
+            <input id="arxivInput" type="text" placeholder="arXiv ID or URL, e.g. 1706.03762 or https://arxiv.org/abs/1706.03762" />
+            <button class="secondary" id="loadArxivBtn" type="button">Load arXiv Source</button>
+          </div>
+          <textarea id="paperInput" spellcheck="false" placeholder="Upload a PDF to extract text automatically, or paste abstract / body / Markdown notes here..."></textarea>
+        </section>
+
+        <section class="notebook" id="notebook" aria-labelledby="notebookTitle">
+          <div class="notebook-head">
+            <div>
+              <h2 id="notebookTitle">Reading Notebook</h2>
+              <span id="memoryStatus">No paper memory loaded.</span>
+            </div>
+            <details id="memoryOutline">
+              <summary>Structured notes</summary>
+              <div id="memoryOutlineContent">Generate a poster to create section summaries and evidence links.</div>
+            </details>
+          </div>
+          <div class="notebook-columns">
+            <div class="notebook-column">
+              <label for="annotationInput">Annotations</label>
+              <div class="notebook-entry">
+                <textarea id="annotationInput" rows="2" placeholder="Record an interpretation, critique, or reminder..."></textarea>
+                <button class="secondary" id="addAnnotationBtn" type="button">Add note</button>
+              </div>
+              <div class="notebook-list" id="annotationList">No annotations yet.</div>
+            </div>
+            <div class="notebook-column">
+              <label for="questionInput">Unresolved questions</label>
+              <div class="notebook-entry">
+                <textarea id="questionInput" rows="2" placeholder="What should the next reading pass answer?"></textarea>
+                <button class="secondary" id="addQuestionBtn" type="button">Add question</button>
+              </div>
+              <div class="notebook-list" id="questionList">No unresolved questions yet.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="agent-flow" id="agentFlow" aria-label="Agent workflow">
+          <article data-agent-stage="planning">
+            <strong>1. Plan</strong>
+            <span>Decompose the paper-reading task</span>
+          </article>
+          <article data-agent-stage="context">
+            <strong>2. Context</strong>
+            <span>Select relevant paper sections</span>
+          </article>
+          <article data-agent-stage="analysis">
+            <strong>3. Analyze</strong>
+            <span>Execute the plan with evidence</span>
+          </article>
+          <article data-agent-stage="verification">
+            <strong>4. Verify</strong>
+            <span>Review grounding and argument quality</span>
+          </article>
+          <article data-agent-stage="reporting">
+            <strong>5. Report</strong>
+            <span>Assemble the verified poster</span>
+          </article>
+        </section>
+        <div class="agent-trace" id="agentTrace" aria-live="polite">Agent is ready.</div>
+        <section class="agent-monitor" id="agentMonitor" aria-label="Live Agent execution"></section>
+        <section class="evaluation-panel" id="evaluationPanel" aria-labelledby="evaluationTitle">
+          <div class="evaluation-head">
+            <div>
+              <h2 id="evaluationTitle">Evaluation</h2>
+              <span id="evaluationStatus">Offline benchmark has not run.</span>
+            </div>
+            <strong id="evaluationBadge">Ready</strong>
+          </div>
+          <div class="evaluation-metrics" id="evaluationMetrics" aria-live="polite"></div>
+          <div class="evaluation-cases" id="evaluationCases">Run the fixed benchmark to measure coverage, formulas, figures, tables, evidence, and hallucinations.</div>
+        </section>
+        <section class="visual-review-panel" id="visualReviewPanel" aria-labelledby="visualReviewTitle">
+          <div class="evaluation-head">
+            <div>
+              <h2 id="visualReviewTitle">Poster Review &amp; Improvement</h2>
+              <span id="visualReviewStatus">Generate a poster, then run visual review.</span>
+            </div>
+            <strong id="visualReviewBadge">Ready</strong>
+          </div>
+          <div class="visual-review-scores" id="visualReviewScores"></div>
+          <div class="visual-review-summary" id="visualReviewSummary">The reviewer checks content selection, narrative, evidence communication, readability, hierarchy, and visual polish.</div>
+          <div class="visual-review-issues" id="visualReviewIssues"></div>
+        </section>
+      </section>
+
+      <div class="poster-editor-source" aria-hidden="true">
+      <section class="poster" id="poster">
+        <header class="poster-hero">
+          <div>
+            <p class="tag">Generated Poster</p>
+            <h2 id="posterTitle">Waiting for paper content</h2>
+            <p id="posterSummary">Upload a PDF, or paste paper content and click Generate Poster.</p>
+            <a id="posterPaperLink" class="poster-paper-link" href="" target="_blank" rel="noopener noreferrer" hidden></a>
+          </div>
+        </header>
+
+        <div class="poster-grid">
+          <article class="poster-card accent" data-poster-section="problem">
+            <h3>Research Problem</h3>
+            <p id="problemText">--</p>
+          </article>
+          <article class="poster-card" data-poster-section="motivation">
+            <h3>Motivation</h3>
+            <p id="motivationText">--</p>
+          </article>
+          <article class="poster-card wide" data-poster-section="method">
+            <h3>Method</h3>
+            <div id="methodText">--</div>
+          </article>
+          <article class="poster-card wide" data-poster-section="theory">
+            <h3>Formula / Theory</h3>
+            <div id="formulaList">--</div>
+          </article>
+          <article class="poster-card wide" data-poster-section="visuals">
+            <h3>Figures / Tables</h3>
+            <div id="figureList">--</div>
+          </article>
+          <article class="poster-card" data-poster-section="results">
+            <h3>Experiments / Results</h3>
+            <p id="resultText">--</p>
+          </article>
+          <article class="poster-card" data-poster-section="contribution">
+            <h3>Contribution / Innovation</h3>
+            <p id="contributionText">--</p>
+          </article>
+        </div>
+      </section>
+      </div>
+
+      <section class="poster-live-preview" id="posterLivePreview" aria-label="最终海报预览">
+        <iframe id="posterPreviewFrame" title="最终海报预览"></iframe>
+      </section>
+    </main>
+
+    <aside class="paper-pet" id="paperPet" data-state="idle" aria-label="论文阅读宠物">
+      <section class="paper-pet-bubble" aria-live="polite">
+        <div class="paper-pet-bubble-head">
+          <strong>小阅</strong>
+          <span class="paper-pet-bubble-head-actions">
+            <button class="desktop-pet-only-control" type="button" data-desktop-action="workspace" title="打开工作台" aria-label="打开工作台">↗</button>
+            <button type="button" data-pet-toggle title="收起气泡" aria-label="收起气泡" aria-expanded="true">−</button>
+            <button class="desktop-pet-only-control" type="button" data-desktop-action="close" title="关闭桌宠" aria-label="关闭桌宠">×</button>
+          </span>
+        </div>
+        <p data-pet-message>今天读哪篇论文？</p>
+        <div class="paper-pet-progress" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      </section>
+      <button class="paper-pet-character" type="button" data-pet-drag-handle title="拖动小阅">
+        <img src="./assets/paper-pet-dinosaur.png?v=1" alt="会喷火的小恐龙论文阅读宠物" draggable="false" />
+        <span class="paper-pet-mouth" data-pet-mouth aria-label="将 PDF 拖到这里"></span>
+      </button>
+    </aside>
+  </body>
+</html>

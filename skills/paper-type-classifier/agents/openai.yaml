@@ -1,0 +1,4 @@
+interface:
+  display_name: "Paper Type Classifier"
+  short_description: "Classify academic papers and determine reading priorities"
+  default_prompt: "Classify this paper and identify its evidence priorities."
