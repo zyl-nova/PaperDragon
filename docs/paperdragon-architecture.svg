@@ -1,0 +1,224 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="820" viewBox="0 0 1800 820" role="img" aria-labelledby="title desc">
+  <title id="title">PaperDragon method overview</title>
+  <desc id="desc">PaperDragon converts multimodal paper input into an evidence-grounded interactive poster through source identification, planning, retrieval, analysis, verification, composition, and visual review.</desc>
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#18324a" flood-opacity="0.10"/>
+    </filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,5 L0,10 Z" fill="#315b82"/>
+    </marker>
+    <marker id="arrowTeal" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,5 L0,10 Z" fill="#168363"/>
+    </marker>
+    <style>
+      .sans { font-family: Inter, "Segoe UI", Arial, sans-serif; letter-spacing: 0; }
+      .title { font-size: 34px; font-weight: 800; fill: #173b67; }
+      .subtitle { font-size: 17px; font-weight: 500; fill: #607383; }
+      .group-label { font-size: 17px; font-weight: 800; fill: #315b82; }
+      .node-title { font-size: 19px; font-weight: 800; fill: #17344d; }
+      .node-copy { font-size: 14px; font-weight: 500; fill: #526575; }
+      .small-title { font-size: 16px; font-weight: 800; fill: #17344d; }
+      .small-copy { font-size: 13px; font-weight: 500; fill: #607383; }
+      .step { font-size: 14px; font-weight: 800; fill: white; }
+      .arrow { fill: none; stroke: #315b82; stroke-width: 3; marker-end: url(#arrow); }
+      .support-arrow { fill: none; stroke: #168363; stroke-width: 2.2; stroke-dasharray: 7 7; marker-end: url(#arrowTeal); }
+    </style>
+  </defs>
+
+  <rect width="1800" height="820" fill="#f7fafc"/>
+  <rect x="18" y="18" width="1764" height="784" rx="16" fill="#ffffff" stroke="#cad7e2" stroke-width="2"/>
+
+  <text x="56" y="70" class="sans title">PaperDragon: Evidence-Grounded Paper-to-Poster Agent</text>
+  <text x="56" y="101" class="sans subtitle">A tool-using reading workflow with source-first extraction, field-level verification, and visual repair</text>
+  <rect x="1510" y="48" width="220" height="38" rx="19" fill="#eaf6f1" stroke="#9bcbbb"/>
+  <text x="1620" y="73" text-anchor="middle" class="sans small-title" fill="#126b54">METHOD OVERVIEW</text>
+
+  <!-- Multimodal input -->
+  <g filter="url(#shadow)">
+    <rect x="42" y="150" width="206" height="326" rx="10" fill="#edf5ff" stroke="#8fb3d8" stroke-width="2"/>
+  </g>
+  <text x="145" y="182" text-anchor="middle" class="sans group-label">MULTIMODAL INPUT</text>
+  <g>
+    <rect x="65" y="207" width="160" height="65" rx="7" fill="#ffffff" stroke="#b9cee2"/>
+    <rect x="78" y="220" width="25" height="31" rx="3" fill="#dbeaff" stroke="#3b6fa8"/>
+    <path d="M96 220v9h7" fill="none" stroke="#3b6fa8" stroke-width="2"/>
+    <text x="116" y="236" class="sans small-title">arXiv</text>
+    <text x="116" y="255" class="sans small-copy">LaTeX source</text>
+  </g>
+  <g>
+    <rect x="65" y="288" width="160" height="65" rx="7" fill="#ffffff" stroke="#b9cee2"/>
+    <rect x="78" y="301" width="25" height="31" rx="3" fill="#fff1ed" stroke="#dc644b"/>
+    <text x="116" y="317" class="sans small-title">PDF</text>
+    <text x="116" y="336" class="sans small-copy">pages + text</text>
+  </g>
+  <g>
+    <rect x="65" y="369" width="160" height="65" rx="7" fill="#ffffff" stroke="#b9cee2"/>
+    <path d="M80 384h23M80 393h30M80 402h26M80 411h19" stroke="#168363" stroke-width="3" stroke-linecap="round"/>
+    <text x="116" y="398" class="sans small-title">Paper text</text>
+    <text x="116" y="417" class="sans small-copy">Markdown / paste</text>
+  </g>
+
+  <!-- Source agent -->
+  <path d="M248 313H282" class="arrow"/>
+  <text x="265" y="297" text-anchor="middle" class="sans small-copy">normalize</text>
+  <g filter="url(#shadow)">
+    <rect x="290" y="207" width="188" height="206" rx="10" fill="#eaf6f1" stroke="#168363" stroke-width="2.5"/>
+  </g>
+  <circle cx="326" cy="245" r="18" fill="#168363"/>
+  <text x="326" y="250" text-anchor="middle" class="sans step">1</text>
+  <text x="350" y="252" class="sans small-title">SOURCE AGENT</text>
+  <line x1="315" y1="272" x2="453" y2="272" stroke="#9bcbbb"/>
+  <text x="384" y="301" text-anchor="middle" class="sans node-copy">resolve identity</text>
+  <text x="384" y="326" text-anchor="middle" class="sans node-copy">recover full title</text>
+  <text x="384" y="351" text-anchor="middle" class="sans node-copy">classify paper type</text>
+  <rect x="315" y="369" width="138" height="25" rx="12" fill="#ffffff" stroke="#9bcbbb"/>
+  <text x="384" y="386" text-anchor="middle" class="sans small-copy">reject stale context</text>
+
+  <!-- Agent loop -->
+  <path d="M478 313H518" class="arrow"/>
+  <g filter="url(#shadow)">
+    <rect x="526" y="139" width="744" height="337" rx="12" fill="#f8fcfa" stroke="#75bba3" stroke-width="2.5"/>
+  </g>
+  <rect x="526" y="139" width="744" height="48" rx="12" fill="#174889"/>
+  <path d="M526 175h744v12H526z" fill="#174889"/>
+  <text x="898" y="170" text-anchor="middle" class="sans group-label" style="fill:#ffffff">PAPERDRAGON AGENT LOOP</text>
+
+  <g>
+    <rect x="548" y="216" width="126" height="166" rx="8" fill="#ffffff" stroke="#9bcbbb" stroke-width="2"/>
+    <circle cx="571" cy="241" r="15" fill="#168363"/><text x="571" y="246" text-anchor="middle" class="sans step">2</text>
+    <text x="611" y="272" text-anchor="middle" class="sans node-title">PLAN</text>
+    <text x="611" y="307" text-anchor="middle" class="sans node-copy">paper-aware</text>
+    <text x="611" y="329" text-anchor="middle" class="sans node-copy">reading tasks</text>
+    <rect x="566" y="348" width="90" height="20" rx="10" fill="#eaf6f1"/><text x="611" y="363" text-anchor="middle" class="sans small-copy">skill guided</text>
+  </g>
+  <path d="M674 299H692" class="arrow"/>
+  <g>
+    <rect x="698" y="216" width="126" height="166" rx="8" fill="#ffffff" stroke="#9bcbbb" stroke-width="2"/>
+    <circle cx="721" cy="241" r="15" fill="#168363"/><text x="721" y="246" text-anchor="middle" class="sans step">3</text>
+    <text x="761" y="272" text-anchor="middle" class="sans node-title">RETRIEVE</text>
+    <text x="761" y="307" text-anchor="middle" class="sans node-copy">GSSC context</text>
+    <text x="761" y="329" text-anchor="middle" class="sans node-copy">select evidence</text>
+    <rect x="716" y="348" width="90" height="20" rx="10" fill="#eaf6f1"/><text x="761" y="363" text-anchor="middle" class="sans small-copy">source first</text>
+  </g>
+  <path d="M824 299H842" class="arrow"/>
+  <g>
+    <rect x="848" y="216" width="126" height="166" rx="8" fill="#ffffff" stroke="#9bcbbb" stroke-width="2"/>
+    <circle cx="871" cy="241" r="15" fill="#168363"/><text x="871" y="246" text-anchor="middle" class="sans step">4</text>
+    <text x="911" y="272" text-anchor="middle" class="sans node-title">ANALYZE</text>
+    <text x="911" y="307" text-anchor="middle" class="sans node-copy">grounded</text>
+    <text x="911" y="329" text-anchor="middle" class="sans node-copy">field synthesis</text>
+    <rect x="866" y="348" width="90" height="20" rx="10" fill="#eaf6f1"/><text x="911" y="363" text-anchor="middle" class="sans small-copy">LLM + VLM</text>
+  </g>
+  <path d="M974 299H992" class="arrow"/>
+  <g>
+    <rect x="998" y="216" width="126" height="166" rx="8" fill="#fff7e8" stroke="#d69a35" stroke-width="2"/>
+    <circle cx="1021" cy="241" r="15" fill="#c47a17"/><text x="1021" y="246" text-anchor="middle" class="sans step">5</text>
+    <text x="1061" y="272" text-anchor="middle" class="sans node-title">VERIFY</text>
+    <text x="1061" y="307" text-anchor="middle" class="sans node-copy">identity + facts</text>
+    <text x="1061" y="329" text-anchor="middle" class="sans node-copy">evidence audit</text>
+    <rect x="1016" y="348" width="90" height="20" rx="10" fill="#ffebc7"/><text x="1061" y="363" text-anchor="middle" class="sans small-copy">field repair</text>
+  </g>
+  <path d="M1124 299H1142" class="arrow"/>
+  <g>
+    <rect x="1148" y="216" width="100" height="166" rx="8" fill="#eef3ff" stroke="#668cca" stroke-width="2"/>
+    <circle cx="1171" cy="241" r="15" fill="#315b82"/><text x="1171" y="246" text-anchor="middle" class="sans step">6</text>
+    <text x="1198" y="272" text-anchor="middle" class="sans node-title">COMPOSE</text>
+    <text x="1198" y="307" text-anchor="middle" class="sans node-copy">select visuals</text>
+    <text x="1198" y="329" text-anchor="middle" class="sans node-copy">fit panels</text>
+    <text x="1198" y="354" text-anchor="middle" class="sans node-copy">reflow layout</text>
+  </g>
+  <path d="M1220 401C1180 447 1040 450 1002 399" class="support-arrow"/>
+  <text x="1110" y="445" text-anchor="middle" class="sans small-copy" fill="#168363">repair only failed fields</text>
+
+  <!-- Visual review -->
+  <path d="M1270 313H1306" class="arrow"/>
+  <g filter="url(#shadow)">
+    <rect x="1314" y="207" width="182" height="206" rx="10" fill="#fff4de" stroke="#c47a17" stroke-width="2.5"/>
+  </g>
+  <circle cx="1349" cy="245" r="18" fill="#c47a17"/><text x="1349" y="250" text-anchor="middle" class="sans step">7</text>
+  <text x="1405" y="252" text-anchor="middle" class="sans node-title">VISION REVIEW</text>
+  <line x1="1337" y1="272" x2="1473" y2="272" stroke="#e5bd76"/>
+  <text x="1405" y="301" text-anchor="middle" class="sans node-copy">inspect crops</text>
+  <text x="1405" y="326" text-anchor="middle" class="sans node-copy">detect clipping</text>
+  <text x="1405" y="351" text-anchor="middle" class="sans node-copy">repair + reflow</text>
+  <rect x="1337" y="369" width="136" height="25" rx="12" fill="#ffffff" stroke="#e5bd76"/>
+  <text x="1405" y="386" text-anchor="middle" class="sans small-copy">quality threshold</text>
+
+  <!-- Output -->
+  <path d="M1496 313H1530" class="arrow"/>
+  <g filter="url(#shadow)">
+    <rect x="1538" y="150" width="220" height="326" rx="10" fill="#eef3ff" stroke="#668cca" stroke-width="2.5"/>
+  </g>
+  <text x="1648" y="182" text-anchor="middle" class="sans group-label">GROUNDED OUTPUT</text>
+  <rect x="1562" y="209" width="172" height="78" rx="8" fill="#174889"/>
+  <text x="1648" y="242" text-anchor="middle" class="sans node-title" style="fill:#ffffff">Adaptive Poster</text>
+  <text x="1648" y="266" text-anchor="middle" class="sans small-copy" style="fill:#dbe8f7">content-aware layout</text>
+  <rect x="1562" y="303" width="172" height="58" rx="7" fill="#ffffff" stroke="#9eb7dc"/>
+  <text x="1648" y="328" text-anchor="middle" class="sans small-title">Interactive HTML</text>
+  <text x="1648" y="347" text-anchor="middle" class="sans small-copy">page · quote · asset</text>
+  <rect x="1562" y="377" width="172" height="58" rx="7" fill="#ffffff" stroke="#9eb7dc"/>
+  <text x="1648" y="402" text-anchor="middle" class="sans small-title">Poster image</text>
+  <text x="1648" y="421" text-anchor="middle" class="sans small-copy">conference ready</text>
+
+  <!-- Specialized intelligence -->
+  <rect x="290" y="522" width="1206" height="108" rx="10" fill="#f3f7f6" stroke="#b8d5cc" stroke-width="1.5"/>
+  <rect x="290" y="522" width="190" height="108" rx="10" fill="#168363"/>
+  <path d="M470 522h10v108h-10z" fill="#168363"/>
+  <text x="385" y="563" text-anchor="middle" class="sans small-title" style="fill:#ffffff">SPECIALIZED</text>
+  <text x="385" y="587" text-anchor="middle" class="sans small-title" style="fill:#ffffff">INTELLIGENCE</text>
+  <text x="385" y="610" text-anchor="middle" class="sans small-copy" style="fill:#d9f1e8">guides the agent loop</text>
+  <g>
+    <rect x="510" y="542" width="280" height="68" rx="7" fill="#ffffff" stroke="#b8d5cc"/>
+    <text x="650" y="568" text-anchor="middle" class="sans small-title">5 Reading Skills</text>
+    <text x="650" y="590" text-anchor="middle" class="sans small-copy">type · plan · writing · visuals · poster</text>
+  </g>
+  <g>
+    <rect x="810" y="542" width="280" height="68" rx="7" fill="#ffffff" stroke="#b8d5cc"/>
+    <text x="950" y="568" text-anchor="middle" class="sans small-title">Paper Memory</text>
+    <text x="950" y="590" text-anchor="middle" class="sans small-copy">notes · evidence · unresolved questions</text>
+  </g>
+  <g>
+    <rect x="1110" y="542" width="356" height="68" rx="7" fill="#ffffff" stroke="#b8d5cc"/>
+    <text x="1288" y="568" text-anchor="middle" class="sans small-title">Tool Registry</text>
+    <text x="1288" y="590" text-anchor="middle" class="sans small-copy">routing · retries · traces · fallback</text>
+  </g>
+  <path d="M650 542V488H611V387" class="support-arrow"/>
+  <path d="M950 542V488H761V387" class="support-arrow"/>
+  <path d="M1288 542V488H1061V387" class="support-arrow"/>
+
+  <!-- Toolchain -->
+  <rect x="290" y="662" width="1468" height="100" rx="10" fill="#f5f7f9" stroke="#cbd4dc" stroke-width="1.5"/>
+  <text x="326" y="702" class="sans group-label">MULTIMODAL TOOLCHAIN</text>
+  <text x="326" y="728" class="sans small-copy">independent tools selected by the agent</text>
+  <g>
+    <rect x="565" y="680" width="258" height="64" rx="7" fill="#ffffff" stroke="#cbd4dc"/>
+    <rect x="565" y="680" width="7" height="64" rx="3" fill="#3b6fa8"/>
+    <text x="694" y="706" text-anchor="middle" class="sans small-title">LaTeX tools</text>
+    <text x="694" y="728" text-anchor="middle" class="sans small-copy">formula · figure · table</text>
+  </g>
+  <g>
+    <rect x="843" y="680" width="258" height="64" rx="7" fill="#ffffff" stroke="#cbd4dc"/>
+    <rect x="843" y="680" width="7" height="64" rx="3" fill="#dc644b"/>
+    <text x="972" y="706" text-anchor="middle" class="sans small-title">PDF tools</text>
+    <text x="972" y="728" text-anchor="middle" class="sans small-copy">parse · locate · precise crop</text>
+  </g>
+  <g>
+    <rect x="1121" y="680" width="258" height="64" rx="7" fill="#ffffff" stroke="#cbd4dc"/>
+    <rect x="1121" y="680" width="7" height="64" rx="3" fill="#c47a17"/>
+    <text x="1250" y="706" text-anchor="middle" class="sans small-title">Model tools</text>
+    <text x="1250" y="728" text-anchor="middle" class="sans small-copy">LLM · VLM · verifier</text>
+  </g>
+  <g>
+    <rect x="1399" y="680" width="329" height="64" rx="7" fill="#ffffff" stroke="#cbd4dc"/>
+    <rect x="1399" y="680" width="7" height="64" rx="3" fill="#168363"/>
+    <text x="1564" y="706" text-anchor="middle" class="sans small-title">Interaction tools</text>
+    <text x="1564" y="728" text-anchor="middle" class="sans small-copy">paper page · quote · original asset</text>
+  </g>
+
+  <rect x="565" y="772" width="546" height="19" rx="9" fill="#edf5ff"/>
+  <text x="838" y="786" text-anchor="middle" class="sans small-copy" fill="#315b82">LaTeX / arXiv first</text>
+  <path d="M1118 781H1154" class="arrow"/>
+  <rect x="1165" y="772" width="563" height="19" rx="9" fill="#fff1ed"/>
+  <text x="1447" y="786" text-anchor="middle" class="sans small-copy" fill="#a44b38">precise PDF crop only as fallback</text>
+</svg>

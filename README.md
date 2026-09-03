@@ -148,92 +148,9 @@ npm start
 
 ## 系统架构
 
-```mermaid
-flowchart TB
-    subgraph INPUT["① MULTIMODAL INPUT"]
-        direction LR
-        ARXIV["arXiv<br/>LaTeX source"]
-        PDF["PDF<br/>pages & text"]
-        TEXT["Paper text<br/>Markdown"]
-    end
+[![PaperDragon method overview](docs/paperdragon-architecture.svg)](docs/paperdragon-architecture.svg)
 
-    SOURCE["SOURCE AGENT<br/>identity · title · paper type"]
-
-    subgraph LOOP["② PAPERDRAGON AGENT LOOP"]
-        direction LR
-        PLAN["PLAN<br/>reading tasks"]
-        CONTEXT["CONTEXT<br/>GSSC retrieval"]
-        ANALYZE["ANALYZE<br/>grounded synthesis"]
-        VERIFY["VERIFY<br/>evidence audit"]
-        COMPOSE["COMPOSE<br/>content & layout"]
-        PLAN --> CONTEXT --> ANALYZE --> VERIFY --> COMPOSE
-    end
-
-    subgraph SUPPORT["③ SPECIALIZED INTELLIGENCE"]
-        direction LR
-        SKILLS["5 READING SKILLS<br/>type · plan · writing · visuals · poster"]
-        MEMORY["PAPER MEMORY<br/>notes · evidence · unresolved questions"]
-        REGISTRY["TOOL REGISTRY<br/>routing · retries · traces · fallback"]
-    end
-
-    subgraph TOOLS["④ MULTIMODAL TOOLCHAIN"]
-        direction LR
-        LATEX["LaTeX tools<br/>formula · figure · table"]
-        PARSER["PDF tools<br/>parse · crop · locate"]
-        MODELS["Model tools<br/>LLM · VLM · verifier"]
-        INTERACT["Interaction tool<br/>page · quote · original asset"]
-    end
-
-    REVIEW["VISION REVIEW<br/>inspect · repair · reflow"]
-
-    subgraph OUTPUT["⑤ EVIDENCE-GROUNDED OUTPUT"]
-        direction LR
-        POSTER["Adaptive Poster"]
-        HTML["Interactive HTML"]
-        IMAGE["Poster image"]
-        POSTER --> HTML
-        POSTER --> IMAGE
-    end
-
-    ARXIV --> SOURCE
-    PDF --> SOURCE
-    TEXT --> SOURCE
-    SOURCE --> PLAN
-    COMPOSE --> REVIEW --> POSTER
-
-    SKILLS -.->|guides| PLAN
-    SKILLS -.->|guides| ANALYZE
-    SKILLS -.->|guides| COMPOSE
-    MEMORY <--> CONTEXT
-    REGISTRY -.->|orchestrates| SOURCE
-    REGISTRY -.->|orchestrates| ANALYZE
-    REGISTRY -.->|orchestrates| VERIFY
-
-    LATEX --> CONTEXT
-    PARSER --> CONTEXT
-    MODELS --> ANALYZE
-    MODELS --> VERIFY
-    MODELS --> REVIEW
-    INTERACT --> HTML
-
-    classDef input fill:#EDF5FF,stroke:#3B6FA8,color:#18324A,stroke-width:1.5px;
-    classDef core fill:#EAF6F1,stroke:#168363,color:#123D32,stroke-width:2px;
-    classDef check fill:#FFF4DE,stroke:#C47A17,color:#5E3B0E,stroke-width:2px;
-    classDef support fill:#F5F7F9,stroke:#718096,color:#263442,stroke-width:1.5px;
-    classDef output fill:#EEF3FF,stroke:#214F9A,color:#17355F,stroke-width:2px;
-
-    class ARXIV,PDF,TEXT input;
-    class SOURCE,PLAN,CONTEXT,ANALYZE,COMPOSE core;
-    class VERIFY,REVIEW check;
-    class SKILLS,MEMORY,REGISTRY,LATEX,PARSER,MODELS,INTERACT support;
-    class POSTER,HTML,IMAGE output;
-
-    style INPUT fill:#FAFCFF,stroke:#B8CCE2,stroke-width:1px
-    style LOOP fill:#F8FCFA,stroke:#8EC9B2,stroke-width:1px
-    style SUPPORT fill:#FCFCFD,stroke:#CDD5DE,stroke-width:1px
-    style TOOLS fill:#FCFCFD,stroke:#CDD5DE,stroke-width:1px
-    style OUTPUT fill:#FAFBFF,stroke:#AFC2E5,stroke-width:1px
-```
+主流程按照论文方法图的阅读方式从左到右展开；Skills、Memory 与 Tool Registry 作为智能支撑层，独立工具链则由 Agent 按任务选择。点击图片可查看高清矢量版本。
 
 ### 五阶段 Agent
 
