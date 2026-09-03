@@ -8,7 +8,7 @@
 
 <img src="assets/paper-pet-dinosaur.png" alt="PaperDragon desktop pet" width="300" />
 
-[生成效果](#生成效果) · [快速开始](#快速开始) · [核心能力](#核心能力) · [系统架构](#系统架构) · [评测](#评测) · [路线图](#路线图)
+[项目亮点](#项目亮点) · [生成效果](#生成效果) · [快速开始](#快速开始) · [系统架构](#系统架构) · [评测](#评测) · [路线图](#路线图)
 
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=nodedotjs&logoColor=white)
 ![Electron](https://img.shields.io/badge/Desktop-Electron-47848F?logo=electron&logoColor=white)
@@ -30,6 +30,19 @@ Plan → Retrieve → Analyze → Verify → Compose
           ↓
 Interactive academic poster (HTML / image)
 ```
+
+## 项目亮点
+
+| 不只是 | PaperDragon 真正做了什么 |
+| --- | --- |
+| **一次 LLM 总结** | 先识别论文类型，再通过 Plan、Retrieve、Analyze、Verify、Compose 分阶段完成阅读，每个结论都经过证据检查 |
+| **PDF 截图或 OCR** | 优先解析 arXiv/LaTeX 原始资源，获取公式、图片和表格；源码不可用时才回退到视觉辅助的精细 PDF 裁剪 |
+| **把全部素材塞进模板** | 根据论文语义挑选最能解释方法和实验的视觉证据，避免公式、图片与表格的无差别堆砌 |
+| **固定两栏排版** | 综合文字量、图片比例、表格可读宽度和阅读顺序估算面板尺寸，为每篇论文重新规划布局 |
+| **生成后才做一次评分** | 视觉模型参与素材选择、裁剪检查和成品修复，在制作过程中持续发现截断、错图与可读性问题 |
+| **不可追溯的最终答案** | 海报结论、公式和图表都可交互，点击即可查看论文页码、原文证据与高清原始素材 |
+
+桌面宠物“小阅”把这条复杂流程变成一个自然入口：把 PDF 拖到嘴边后，它会自动接收论文、显示阅读进度，并在完成后打开 Poster 工作台。
 
 ## 生成效果
 
