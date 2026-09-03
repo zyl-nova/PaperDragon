@@ -37,27 +37,31 @@ Interactive academic poster (HTML / image)
 
 ### ColPali：视觉文档检索论文
 
-[![PaperDragon generated poster for ColPali](docs/showcase/colpali-poster.png)](docs/showcase/colpali-poster.png)
+[![PaperDragon generated poster for ColPali](docs/showcase/colpali-poster.png)](https://zyl-nova.github.io/PaperDragon/showcase/colpali.html)
+
+[打开 ColPali 交互海报](https://zyl-nova.github.io/PaperDragon/showcase/colpali.html) · [浏览全部在线案例](https://zyl-nova.github.io/PaperDragon/)
 
 公式、方法框架、消融结果和主实验表格被分配到不同语义面板，同时保留论文链接、图注与证据来源。
 
 <table>
   <tr>
     <td width="50%" align="center">
-      <a href="docs/showcase/mapcoder-poster.png">
+      <a href="https://zyl-nova.github.io/PaperDragon/showcase/mapcoder.html">
         <img src="docs/showcase/mapcoder-poster.png" alt="PaperDragon generated poster for MapCoder" />
       </a>
       <br />
       <strong>MapCoder</strong><br />
-      多智能体代码生成：突出完整方法流程与对比实验
+      多智能体代码生成：突出完整方法流程与对比实验<br />
+      <a href="https://zyl-nova.github.io/PaperDragon/showcase/mapcoder.html">打开交互海报</a>
     </td>
     <td width="50%" align="center">
-      <a href="docs/showcase/pix2vox-poster.png">
+      <a href="https://zyl-nova.github.io/PaperDragon/showcase/pix2vox.html">
         <img src="docs/showcase/pix2vox-poster.png" alt="PaperDragon generated poster for Pix2Vox" />
       </a>
       <br />
       <strong>Pix2Vox</strong><br />
-      3D 重建：根据架构图和结果表自适应组织版面
+      3D 重建：根据架构图和结果表自适应组织版面<br />
+      <a href="https://zyl-nova.github.io/PaperDragon/showcase/pix2vox.html">打开交互海报</a>
     </td>
   </tr>
 </table>

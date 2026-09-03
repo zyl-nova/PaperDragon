@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PaperDragon Interactive Poster Gallery</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172b3f;
+      --muted: #5f6f7d;
+      --navy: #174889;
+      --green: #168363;
+      --coral: #dc644b;
+      --line: #cfd9e3;
+      --page: #f4f7f9;
+      --panel: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--page);
+      color: var(--ink);
+      font-family: Inter, "Segoe UI", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+    }
+    header {
+      border-bottom: 1px solid var(--line);
+      background: var(--panel);
+    }
+    .header-inner, main {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 24px;
+    }
+    .brand { font-size: 22px; font-weight: 800; color: var(--navy); }
+    .repo { color: var(--green); font-weight: 700; text-decoration: none; }
+    main { padding: 42px 0 56px; }
+    h1 { margin: 0; font-size: clamp(30px, 5vw, 50px); line-height: 1.12; }
+    .intro { max-width: 760px; margin: 14px 0 30px; color: var(--muted); font-size: 18px; line-height: 1.7; }
+    .gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+    article {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      box-shadow: 0 8px 24px rgba(23, 43, 63, 0.07);
+    }
+    article:first-child { grid-column: 1 / -1; }
+    .preview {
+      display: block;
+      width: 100%;
+      height: 330px;
+      object-fit: cover;
+      object-position: top;
+      border-bottom: 1px solid var(--line);
+      background: #e9eef3;
+    }
+    article:first-child .preview { height: 500px; }
+    .content { padding: 20px; }
+    h2 { margin: 0 0 8px; font-size: 22px; }
+    p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .actions { display: flex; align-items: center; gap: 14px; margin-top: 18px; }
+    .open {
+      display: inline-flex;
+      align-items: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 6px;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 750;
+      text-decoration: none;
+    }
+    .open:hover { background: var(--green); }
+    .hint { color: var(--coral); font-size: 14px; font-weight: 700; }
+    @media (max-width: 760px) {
+      .header-inner, main { width: min(100% - 24px, 1180px); }
+      .header-inner { min-height: 62px; }
+      main { padding-top: 28px; }
+      .gallery { grid-template-columns: 1fr; }
+      article:first-child { grid-column: auto; }
+      .preview, article:first-child .preview { height: 300px; }
+      .repo { font-size: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <div class="brand">PaperDragon</div>
+      <a class="repo" href="https://github.com/zyl-nova/PaperDragon">View on GitHub</a>
+    </div>
+  </header>
+  <main>
+    <h1>Interactive Poster Gallery</h1>
+    <p class="intro">这些海报由 PaperDragon 从论文自动生成。打开案例后，可点击结论、图表和公式，查看对应页码、原文证据与高清素材。</p>
+    <section class="gallery" aria-label="PaperDragon poster examples">
+      <article>
+        <a href="showcase/colpali.html"><img class="preview" src="showcase/colpali-poster.png" alt="ColPali poster preview" /></a>
+        <div class="content">
+          <h2>ColPali</h2>
+          <p>视觉文档检索论文：展示公式、方法框架、消融曲线和主实验表格的语义化组织。</p>
+          <div class="actions"><a class="open" href="showcase/colpali.html">打开交互海报</a><span class="hint">点击内容查看证据</span></div>
+        </div>
+      </article>
+      <article>
+        <a href="showcase/mapcoder.html"><img class="preview" src="showcase/mapcoder-poster.png" alt="MapCoder poster preview" /></a>
+        <div class="content">
+          <h2>MapCoder</h2>
+          <p>多智能体代码生成：突出完整方法流程、核心机制和多组对比实验。</p>
+          <div class="actions"><a class="open" href="showcase/mapcoder.html">打开交互海报</a><span class="hint">查看原文来源</span></div>
+        </div>
+      </article>
+      <article>
+        <a href="showcase/pix2vox.html"><img class="preview" src="showcase/pix2vox-poster.png" alt="Pix2Vox poster preview" /></a>
+        <div class="content">
+          <h2>Pix2Vox</h2>
+          <p>3D 重建论文：根据网络架构图和实验结果表自适应规划版面。</p>
+          <div class="actions"><a class="open" href="showcase/pix2vox.html">打开交互海报</a><span class="hint">查看高清图表</span></div>
+        </div>
+      </article>
+    </section>
+  </main>
+</body>
+</html>
