@@ -8,7 +8,7 @@
 
 <img src="assets/paper-pet-dinosaur.png" alt="PaperDragon desktop pet" width="300" />
 
-[快速开始](#快速开始) · [核心能力](#核心能力) · [系统架构](#系统架构) · [评测](#评测) · [路线图](#路线图)
+[生成效果](#生成效果) · [快速开始](#快速开始) · [核心能力](#核心能力) · [系统架构](#系统架构) · [评测](#评测) · [路线图](#路线图)
 
 ![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?logo=nodedotjs&logoColor=white)
 ![Electron](https://img.shields.io/badge/Desktop-Electron-47848F?logo=electron&logoColor=white)
@@ -30,6 +30,37 @@ Plan → Retrieve → Analyze → Verify → Compose
           ↓
 Interactive academic poster (HTML / image)
 ```
+
+## 生成效果
+
+以下 Poster 均由 PaperDragon 从论文内容自动规划并生成，不是手工套版。系统会根据论文类型选择方法图、关键公式和实验结果，再按素材尺寸与内容密度组织版面。点击图片可查看高清版本。
+
+### ColPali：视觉文档检索论文
+
+[![PaperDragon generated poster for ColPali](docs/showcase/colpali-poster.png)](docs/showcase/colpali-poster.png)
+
+公式、方法框架、消融结果和主实验表格被分配到不同语义面板，同时保留论文链接、图注与证据来源。
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <a href="docs/showcase/mapcoder-poster.png">
+        <img src="docs/showcase/mapcoder-poster.png" alt="PaperDragon generated poster for MapCoder" />
+      </a>
+      <br />
+      <strong>MapCoder</strong><br />
+      多智能体代码生成：突出完整方法流程与对比实验
+    </td>
+    <td width="50%" align="center">
+      <a href="docs/showcase/pix2vox-poster.png">
+        <img src="docs/showcase/pix2vox-poster.png" alt="PaperDragon generated poster for Pix2Vox" />
+      </a>
+      <br />
+      <strong>Pix2Vox</strong><br />
+      3D 重建：根据架构图和结果表自适应组织版面
+    </td>
+  </tr>
+</table>
 
 ## 核心能力
 
